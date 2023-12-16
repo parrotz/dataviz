@@ -27,11 +27,12 @@
             }; 
         }
 
+        var svg = d3.select("body")
+        .append("svg")
+        .attr("width", w)
+        .attr("height", h);
+
         d3.csv("diamonds.csv", rowConverter, function(data) {    
-            var svg = d3.select("body")
-            .append("svg")
-            .attr("width", w)
-            .attr("height", h);
 
             svg.selectAll("circle")
             .data(data)
