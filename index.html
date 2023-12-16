@@ -35,7 +35,7 @@
             }
 
             svg.selectAll("circle")
-            .data(function(d) {return d;})
+            .data(data)
             .enter()
             .append("circle")
             .attr("cx", function(d) {return d[1];})
