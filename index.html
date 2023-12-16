@@ -8,25 +8,26 @@
 <body>
     <script type="text/javascript">  
 
-        var rowConverter = function(d) {  
-            return {        
-                index: parseInt(d.Index), 
-                carat: parseFloat(d.carat),
-                cut: d.cut,
-                color: d.color,
-                clarity: d.clarity,
-                depth: parseFloat(d.depth),
-                table: parseInt(d.table),
-                price: parseInt(d.price),
-                x: parseFloat(d.x),
-                y: parseFloat(d.y),
-                z: parseFloat(d.z)
-            }; 
-        }
-
-        d3.csv("diamonds.csv", rowConverter, function(data) {    
-            console.log(data); 
-        });        
+        d3.request("diamonds.csv")
+			.mimeType("text/csv")
+            .get(function(response) {
+                var rowConverter = function(d) {  
+                    return {        
+                        index: parseInt(d.Index), 
+                        carat: parseFloat(d.carat),
+                        cut: d.cut,
+                        color: d.color,
+                        clarity: d.clarity,
+                        depth: parseFloat(d.depth),
+                        table: parseInt(d.table),
+                        price: parseInt(d.price),
+                        x: parseFloat(d.x),
+                        y: parseFloat(d.y),
+                        z: parseFloat(d.z)
+                    }; 
+                }
+            console.log(d)
+            });
     
     </script>
     <h1>Placeholder</h1>
