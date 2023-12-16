@@ -35,19 +35,19 @@
         d3.csv("diamonds.csv", rowConverter, function(data) {    
 
             var xScale = d3.scaleLinear()
-            .domain([0, d3.max(data, function(d) {return d[1];})])
+            .domain([0, d3.max(data, function(d) {return d.carat;})])
             .range([0, w]);
 
             var yScale = d3.scaleLinear()
-            .domain([0, d3.max(data, function(d) {return d[7];})])
+            .domain([0, d3.max(data, function(d) {return d.price;})])
             .range([0, h])
 
             svg.selectAll("circle")
             .data(data)
             .enter()
             .append("circle")
-            .attr("cx", function(d) {return xScale(d);})
-            .attr("cy", function(d) {return yScale(d);})
+            .attr("cx", function(d) {return xScale(d.carat);})
+            .attr("cy", function(d) {return yScale(d.price);})
             .attr("r", 2);
 
         });        
