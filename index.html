@@ -11,6 +11,8 @@
         var w = 500;
         var h = 100;
 
+        var dataset;
+
         var rowConverter = function(d) {  
             return {        
                 index: parseInt(d.Index), 
@@ -34,8 +36,10 @@
 
         d3.csv("diamonds.csv", rowConverter, function(data) {    
 
+            var dataset = data;
+
             svg.selectAll("circle")
-            .data(data)
+            .data(dataset)
             .enter()
             .append("circle")
             .attr("cx", function(d) {return d[1];})
