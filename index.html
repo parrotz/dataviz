@@ -10,7 +10,7 @@
 
         var w = 500;
         var h = 100;
-        
+
         var rowConverter = function(d) {  
             return {        
                 index: parseInt(d.Index), 
@@ -34,7 +34,7 @@
             .attr("height", h);
 
             svg.selectAll("circle")
-            .data(dataset)
+            .data(data)
             .enter()
             .append("circle")
             .attr("cx", function(d) {return d[1];})
