@@ -11,42 +11,35 @@
         var w = 500;
         var h = 100;
 
-        var dataset;
+        d3.csv("diamonds.csv", function(data) {    
+            var rowConverter = function(d) {  
+                return {        
+                    index: parseInt(d.Index), 
+                    carat: parseFloat(d.carat),
+                    cut: d.cut,
+                    color: d.color,
+                    clarity: d.clarity,
+                    depth: parseFloat(d.depth),
+                    table: parseInt(d.table),
+                    price: parseInt(d.price),
+                    x: parseFloat(d.x),
+                    y: parseFloat(d.y),
+                    z: parseFloat(d.z)
+                }; 
+            }
 
-        var rowConverter = function(d) {  
-            return {        
-                index: parseInt(d.Index), 
-                carat: parseFloat(d.carat),
-                cut: d.cut,
-                color: d.color,
-                clarity: d.clarity,
-                depth: parseFloat(d.depth),
-                table: parseInt(d.table),
-                price: parseInt(d.price),
-                x: parseFloat(d.x),
-                y: parseFloat(d.y),
-                z: parseFloat(d.z)
-            }; 
-        }
-
-        var svg = d3.select("body")
-        .append("svg")
-        .attr("width", w)
-        .attr("height", h);
-
-        svg.selectAll("circle")
-        .data(dataset)
-        .enter()
-        .append("circle")
-        .attr("cx", function(d) {return d[1];})
-        .attr("cy", function(d) {return d[7];})
-        .attr("r", 5);
-
-        d3.csv("diamonds.csv", rowConverter, function(data) {    
-
-            var dataset = data;
-
+            var svg = d3.select("body")
+            .append("svg")
+            .attr("width", w)
+            .attr("height", h);
             
+            svg.selectAll("circle")
+            .data(data)
+            .enter()
+            .append("circle")
+            .attr("cx", function(d) {return d[1];})
+            .attr("cy", function(d) {return d[7];})
+            .attr("r", 5);
         });        
     
     </script>
