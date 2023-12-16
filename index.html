@@ -32,14 +32,14 @@
                 }; 
             }
 
-        d3.csv("diamonds.csv", rowConverter, function(data) {    
+        d3.csv("diamonds.csv", rowConverter).then(function(data) {    
 
             var xScale = d3.scaleLinear()
-            .domain([d3.min(data, function(d) {return d[1];}), d3.max(data, function(d) {return d[1];})])
+            .domain([d3.min(data, function(d) {return d.carat;}), d3.max(data, function(d) {return d.carat;})])
             .range([0, w]);
 
             var yScale = d3.scaleLinear()
-            .domain([d3.min(data, function(d) {return d[7];}), d3.max(data, function(d) {return d[7];})])
+            .domain([d3.min(data, function(d) {return d.price;}), d3.max(data, function(d) {return d.price;})])
             .range([0, h])
 
             svg.selectAll("circle")
