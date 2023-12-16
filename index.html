@@ -16,9 +16,7 @@
         .attr("width", w)
         .attr("height", h);
 
-
-        d3.csv("diamonds.csv", function(data) {    
-            var rowConverter = function(d) {  
+        var rowConverter = function(d) {  
                 return {        
                     index: parseInt(d.Index), 
                     carat: parseFloat(d.carat),
@@ -33,6 +31,8 @@
                     z: parseFloat(d.z)
                 }; 
             }
+
+        d3.csv("diamonds.csv", rowConverter, function(data) {    
 
             svg.selectAll("circle")
             .data(data)
