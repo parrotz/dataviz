@@ -79,11 +79,9 @@
 
 
 
-            // Size scales
-            var sizeScale = d3.scaleLinear()
-            .domain(data)
-            .range([1, 4])
-            .interpolateNumber;
+            // Shape scales
+            var shape = d3.scaleOrdinal(d3.symbolsStroke);
+            var symbol = d3.symbol;
 
 
             // Tooltip
@@ -123,7 +121,7 @@
 
 
             // Build scatterplot
-            svg.selectAll("circle")
+            svg.selectAll(".symbol")
             .data(data)
             .enter()
             .append("circle")
