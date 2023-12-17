@@ -82,7 +82,8 @@
             // Size scales
             var sizeScale = d3.scaleLinear()
             .domain(data)
-            .range([1, 4]);
+            .range([1, 4])
+            .interpolate(interpolateNumber);
 
 
             // Tooltip
