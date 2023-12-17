@@ -177,7 +177,12 @@
 
 
             d3.select("svg")
-            .on("click", function() {        
+            .on("click", function() {     
+                
+                var cutColor = d3.scaleOrdinal()
+                .domain(data)
+                .range(["#e41a1c", "#377eb8", "#4daf4a", "#984ea3", "#ff7f00"]);
+                
                 svg.selectAll("circle")
                 .data(data)
                 .attr('fill', function(d) {return myColor(d.cut);})
@@ -185,7 +190,7 @@
                 // Add legend
                 var cutOrdinal = d3.scaleOrdinal()
                 .domain(["Ideal", "Premium", "Very Good", "Good", "Fair"])
-                .range(["#a65628", "#ffff33", "#ff7f00", "#984ea3", "#4daf4a", "#377eb8", "#e41a1c"]);
+                .range(["#ff7f00", "#984ea3", "#4daf4a", "#377eb8", "#e41a1c"]);
 
                 var legendOrdinalUpdate = d3.legendColor()
                 .scale(cutOrdinal);
