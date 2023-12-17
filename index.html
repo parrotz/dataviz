@@ -86,7 +86,7 @@
 
     <p>
     Second, the price of diamonds trends upwards with the weight of the diamond in carats. Unsurprising! Showing that 
-    big diamonds are more expensive than small diamonds is hardly worth learning JavaScript for. However, there are 
+    big diamonds are more expensive than small diamonds is hardly worth learning JavaScript. However, there are 
     several spots of noticeable variability in prices for diamonds of similar weights. For example, there is variance 
     within the standardized weight bands I pointed out in the previous paragraph. Since those diamonds aren't differentiated 
     by their weight, it makes sense that other factors affect the price. Similarly, above and below a certain threshold there 
@@ -95,8 +95,64 @@
     </p>
 
     <p>
-    
+    Now that I had my scatterplot, the next issue was how to map the remaining categorical variables. My first idea, 
+    which I ended up going with, was to map one of the variables to the color channel. I initially chose the variable 
+    "color" (not to be confused with the color channel) simply out of curiosity. What I found was that there were some 
+    interesting trends with respect to price and color. As you can see in the screenshot below, there are noticeably 
+    distinct bands of color arcing through the graph. At the top of each bunch of carats you can see smatterings of 
+    brown marks. Those are rated "D", the highest available color rating. Slightly below and mixed together are yellow 
+    and orange marks corresponding to the next highest grades, "E" and "F". Interestingly, below these is a thick band 
+    of red marks corresponding to the lowest color grade, "J". One can easily discern that the "J"-rated diamonds 
+    consistently sell for higher prices than all three of the next higher color-rated diamonds. I hypothesize that this 
+    is because that particular color lends itself stylistically to certain cuts or physically to certain levels of 
+    clarity, so that will be the next target of my investigation.
     </p>
+
+    <img src="/dataviz/colorTrends.png">
+
+    <p>
+    At this point I was thinking that I would map the cut and clarity variables to the shape and/or size channels and 
+    include all of them on the same scatterplot. My thinking was that since I was most interested in the interactions 
+    between the 4 Cs, having them all on the same view would make examining those interactions easier. I quickly realized 
+    that this wasn't feasible. For one thing, there are so many marks that telling shapes apart would be extremely difficult, 
+    especially in areas where there are lots of marks clustered together. The same issue is true for size, plus differentiating 
+    sizes at that scale would be nearly impossible even if they were neatly lined up next to each other.
+    </p>
+    <p>
+    Instead, I decided to make the graph clickable and have the click transition the color channel to the cut and clarity 
+    variables in turn. This kept the x- and y-axes intact, which lent continuity which helps with examining the interactions. 
+    It also meant I could use the D3 transition method to create an effect where the color channels would "melt" into each 
+    other. I found that this also helped highlight the interactions, since the contrast caused the different properties 
+    to pop out.
+    </p>
+    
+    <img src="/dataviz/cutTrends.png">
+
+    <p>
+    The main takeaway from this view is that lots of diamonds have an ideal cut! The graph is flooded with red, 
+    corresponding to the ideal cut. Interestingly, the diamonds that weigh less and are in the middle of their price 
+    bands seem to have the highest concentration of ideal cuts. This indicates that jewelers may be less willing to 
+    risk higher-quality diamonds by attempting to shape them perfectly, since those diamonds have other redeeming factors 
+    that can keep their price up with less-than-ideal cuts. The plain diamonds of the batch, those that are small or 
+    poorly-colored, are the ones that get the Cinderella treatment in the jewelers shop. The final question then 
+    is how clarity affects the other factors. Once again, a click of the chart transitions the color channel to the clarity variable.
+    </p>
+
+    <img src="/dataviz/clarityTrends.png">
+
+    <p>
+    Once again, there are noticeable trends visible in the color channel. For diamonds below 0.9 carats, the highest-priced 
+    marks are green, indicating the third-best grade of VS1. For all weights, the middle-to-lower tier of diamonds are 
+    pink on the chart, corresponding to a higher grade of VVS2. There are distinct bands of green and red too, which 
+    correspond to the fourth- and seventh-highest rated clarity scores. Simply put, while clarity clearly affects price, 
+    higher clarity scores don't seem to correlate at all with higher prices. Instead, they seem to be more related to 
+    stylistic preference and other exogenous factors that are stronger predictors of price. Putting together all of this 
+    information, we can summarize the answers to our questions. There are definite trends in the diamond market, as evidenced 
+    by the trends in the x-axis and color channels in all of the charts. However, those trends don't correspond to the 
+    intuitive idea that the brightest, clearest, and most pristine diamonds sell for the highest prices. We come away with 
+    a more nuanced understanding of diamonds, and hopefully a leg up the next time we go shopping.
+    </p>
+
     <br style = "line-height:10">
 
 </body>
