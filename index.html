@@ -185,6 +185,8 @@
                 
                 svg.selectAll("circle")
                 .data(data)
+                .transition()
+                .duration(1000)
                 .attr('fill', function(d) {return cutColor(d.cut);})
                 
                 // Add legend
