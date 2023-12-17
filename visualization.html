@@ -1,0 +1,212 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEWM-N328 Final Project Visualization</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.min.js"></script>
+    <style type="text/css">
+
+        * {
+            font-family: Helvetica, sans-serif;
+        }
+
+        h1 {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Diamond Price Visualization</h1>
+    <div id="onlydiv"></div>
+    <script type="text/javascript">  
+
+        // Define size variables
+        var w = 1000;
+        var h = 500;
+        var padding = 50;
+
+
+        // Build svg
+        var svg = d3.select("#onlydiv")
+        .append("svg")
+        .attr("width", w)
+        .attr("height", h);
+
+
+
+        // Data parser
+        var rowConverter = function(d) {  
+                return {        
+                    index: parseInt(d.index), 
+                    carat: parseFloat(d.carat),
+                    cut: d.cut,
+                    color: d.color,
+                    clarity: d.clarity,
+                    depth: parseFloat(d.depth),
+                    table: parseInt(d.table),
+                    price: parseInt(d.price),
+                    x: parseFloat(d.x),
+                    y: parseFloat(d.y),
+                    z: parseFloat(d.z)
+                }; 
+        }
+
+        
+        d3.csv("diamonds.csv", rowConverter).then(function(data) {    
+
+            // x and y scales
+            var xScale = d3.scaleLinear()
+            .domain([d3.min(data, function(d) {return d.carat;}), d3.max(data, function(d) {return d.carat;})])
+            .range([padding, w - padding * 2]);
+
+            var yScale = d3.scaleLinear()
+            .domain([d3.min(data, function(d) {return d.price;}), d3.max(data, function(d) {return d.price;})])
+            .range([h - padding, padding]);
+
+
+            // Color scales
+            var myColor = d3.scaleOrdinal()
+            .domain(data)
+            .range(["#e41a1c", "#377eb8", "#4daf4a", "#984ea3", "#ff7f00", "#ffff33", "#a65628"]);
+
+            var ordinal = d3.scaleOrdinal()
+            .domain(["D", "E", "F", "G", "H", "I", "J"])
+            .range(["#a65628", "#ffff33", "#ff7f00", "#984ea3", "#4daf4a", "#377eb8", "#e41a1c"]);
+
+
+            // Tooltip
+            var Tooltip = d3.select("#onlydiv")
+            .append("div")
+            .style("opacity", 0)
+            .attr("class", "tooltip")
+            .style("background-color", "white")
+            .style("border", "solid")
+            .style("border-color", "white")
+            .style("border-width", "2px")
+            .style("border-radius", "5px")
+            .style("margin-left", "50px")
+            .style("padding", "10px")
+
+            var mouseover = function(d) {
+                Tooltip
+                .style("opacity", 1)
+                d3.select(this)
+                .attr("r", 10);
+            };
+
+            var mousemove = function(event, d) {
+                Tooltip
+                .html("Price: $" + d.price.toLocaleString("en-US") + "<br> Carats: " + d.carat + "<br> Cut: " + d.cut + "<br> Color: " + d.color + "<br> Clarity: " + d.clarity)
+                .style("left", "50px")
+                .style("top", (event.pageY) + "px")
+            };
+
+            var mouseleave = function(d) {
+                Tooltip
+                .style("opacity", 0)
+                d3.select(this)
+                .attr("r", 2);
+            };
+
+
+
+            // Build scatterplot
+            svg.selectAll("circle")
+            .data(data)
+            .enter()
+            .append("circle")
+            .attr("cx", function(d) {return xScale(d.carat);})
+            .attr("cy", function(d) {return yScale(d.price);})
+            .attr("r", 2)
+            .attr('fill', function(d) {return myColor(d.color);})
+            .on("mouseover", mouseover)
+            .on("mousemove", mousemove)
+            .on("mouseout", mouseleave);
+
+
+
+            // Add axes
+            var xAxis = d3.axisBottom()
+            .scale(xScale);
+
+            var yAxis = d3.axisLeft()
+            .scale(yScale)
+
+            svg.append("g")
+            .attr("class", "axis")
+            .attr("transform", "translate(0," + (h - padding) + ")")
+            .call(xAxis);
+
+            svg.append("g")
+            .attr("class", "axis")
+            .attr("transform", "translate(" + padding + ",0)")
+            .call(yAxis);
+
+            svg.append("text")
+            .attr("class", "x label")
+            .attr("text-anchor", "end")
+            .attr("x", w/2)
+            .attr("y", h - 6)
+            .attr("font-weight", "bold")
+            .text("Carats");
+
+            svg.append("text")
+            .attr("class", "y label")
+            .attr("text-anchor", "end")
+            .attr("y", 6)
+            .attr("dy", ".75em")
+            .attr("font-weight", "bold")
+            .attr("transform", "rotate(-90)")
+            .text("Price");
+
+
+            // Add legend
+            svg.append("g")
+            .attr("class", "legendOrdinal")
+            .attr("transform", "translate(" + (w - padding) + ",0)");
+
+            var legendOrdinal = d3.legendColor()
+    	    .scale(ordinal);
+    
+            svg.select(".legendOrdinal")
+	  	    .call(legendOrdinal);
+
+
+            d3.select("svg")
+            .on("click", function() {     
+                
+                var cutColor = d3.scaleOrdinal()
+                .domain(data)
+                .range(["#e41a1c", "#377eb8", "#4daf4a", "#984ea3", "#ff7f00"]);
+                
+                svg.selectAll("circle")
+                .data(data)
+                .transition()
+                .duration(2000)
+                .attr('fill', function(d) {return cutColor(d.cut);})
+                
+                // Add legend
+                var cutOrdinal = d3.scaleOrdinal()
+                .domain(["Ideal", "Premium", "Very Good", "Good", "Fair"])
+                .range(["#e41a1c", "#984ea3", "#ff7f00", "#377eb8", "#4daf4a"]);
+
+                var legendOrdinalUpdate = d3.legendColor()
+                .scale(cutOrdinal);
+        
+                svg.select(".legendOrdinal")
+                .transition()
+                .duration(2000)
+                .attr("transform", "translate(" + (w - padding - padding) + ",0)")
+                .transition()
+                .duration(2000)                
+                .call(legendOrdinalUpdate);
+            });
+        });        
+    
+    </script>
+</body>
+</html>
