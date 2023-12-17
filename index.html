@@ -63,8 +63,9 @@
             .domain([d3.min(data, function(d) {return d.price;}), d3.max(data, function(d) {return d.price;})])
             .range([h - padding, padding]);
 
-            var myColor = d3.scaleSequential(d3.interpolateRainbow)
-            .domain(data);
+            var myColor = d3.scaleOrdinal()
+            .domain(data)
+            .range(d3.schemeTableau10);
 
             var ordinal = d3.scaleOrdinal()
             .domain("D", "E", "F", "G", "H", "I", "J")
@@ -104,17 +105,14 @@
             .call(yAxis);
 
             svg.append("g")
-            .attr("class", "legendSequential")
-            .attr("transform", "translate(20,20)");
+            .attr("class", "legendOrdinal")
+            .attr("transform", "translate(w+20,30)");
 
-            var legendSequential = d3.legendColor()
-    	    .scale(myColor)
-            .shapeWidth(30)
-            .cells(7)
-            .orient("horizontal");
+            var legendOrdinal = d3.legendColor()
+    	    .scale(myColor);
     
-            svg.select(".legendSequential")
-	  	    .call(legendSequential);
+            svg.select(".legendOrdinal")
+	  	    .call(legendOrdinal);
 
         });        
     
