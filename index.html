@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NEWM-N328 Final Project</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.min.js"></script>
     <style type="text/css">
 
         h1 {
@@ -77,12 +78,10 @@
             .attr('fill', function(d) {return myColor(d);})
             .on("mouseover", function() {    
                 d3.select(this)
-                .attr("fill", "orange")
-                .attr("r", 6); }
+                .attr("r", 10); }
                 )
             .on("mouseout", function() {    
                 d3.select(this)
-                .attr("fill", function(d) {return myColor(d);})
                 .attr("r", 2); }
                 );
 
