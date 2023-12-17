@@ -41,12 +41,11 @@
         function handleZoom(e) {
             d3.selectAll("circle")
             .attr("transform", e.transform)
-            .scaleExtent([1, 10])
-            .translateExtent([0,0], [w,h])
         };
 
         let zoom = d3.zoom()
-        .on("zoom", handleZoom);
+        .on("zoom", handleZoom)
+        .scaleExtent([1,5]);
 
         d3.select("svg")
         .call(zoom);
