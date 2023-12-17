@@ -21,6 +21,7 @@
 </head>
 <body>
     <h1>Diamond Price Visualization</h1>
+    <div id="onlydiv"></div>
     <script type="text/javascript">  
 
         // Define size variables
@@ -30,7 +31,7 @@
 
 
         // Build svg
-        var svg = d3.select("body")
+        var svg = d3.select("#onlydiv")
         .append("svg")
         .attr("width", w)
         .attr("height", h);
@@ -122,8 +123,8 @@
 
             svg.append("text")
             .attr("class", "y label")
-            .attr("text-anchor", "end")
-            .attr("y", h + padding)
+            .attr("text-anchor", "middle")
+            .attr("y", 6)
             .attr("dy", ".75em")
             .attr("transform", "rotate(-90)")
             .text("Price");
