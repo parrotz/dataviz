@@ -172,7 +172,8 @@
             .attr("transform", "translate(" + (w - padding) + ",0)");
 
             var legendOrdinal = d3.legendColor()
-    	    .scale(ordinal);
+    	    .scale(ordinal)
+            .title("Color");
     
             svg.select(".legendOrdinal")
 	  	    .call(legendOrdinal);
@@ -200,7 +201,8 @@
                     .range(["#e41a1c", "#984ea3", "#ff7f00", "#377eb8", "#4daf4a"]);
 
                     var legendOrdinalUpdate = d3.legendColor()
-                    .scale(cutOrdinal);
+                    .scale(cutOrdinal)
+                    .title("Cut");
             
                     svg.select(".legendOrdinal")
                     .attr("transform", "translate(" + (w - padding - padding) + ",0)")              
@@ -226,10 +228,11 @@
                     .range(clarityRange.reverse());
 
                     var legendOrdinalUpdate2 = d3.legendColor()
-                    .scale(clarityOrdinal);
+                    .scale(clarityOrdinal)
+                    .title("Clarity");
             
                     svg.select(".legendOrdinal")
-                    .attr("transform", "translate(" + (w - padding) + ",0)")                
+                    .attr("transform", "translate(" + (w - padding - padding) + ",0)")                
                     .call(legendOrdinalUpdate2);
 
                 }
