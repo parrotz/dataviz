@@ -169,7 +169,7 @@
             // Add legend
             svg.append("g")
             .attr("class", "legendOrdinal")
-            .attr("transform", "translate(" + (w - padding) + ",0)");
+            .attr("transform", "translate(" + (w - padding) + ",20)");
 
             var legendOrdinal = d3.legendColor()
     	    .scale(ordinal)
@@ -205,7 +205,7 @@
                     .title("Cut");
             
                     svg.select(".legendOrdinal")
-                    .attr("transform", "translate(" + (w - padding - padding) + ",0)")              
+                    .attr("transform", "translate(" + (w - padding - padding) + ",20)")              
                     .call(legendOrdinalUpdate);
                 } else {
                     state = 'clarity';
@@ -232,7 +232,7 @@
                     .title("Clarity");
             
                     svg.select(".legendOrdinal")
-                    .attr("transform", "translate(" + (w - padding - padding) + ",0)")                
+                    .attr("transform", "translate(" + (w - padding - padding) + ",20)")                
                     .call(legendOrdinalUpdate2);
 
                 }
