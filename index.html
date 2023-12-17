@@ -108,10 +108,10 @@
             .attr("transform", "translate(20,20)");
 
             var legendSequential = d3.legendColor()
-    	    .scale(myColor);
+    	    .scale(myColor)
             .shapeWidth(30)
             .cells(7)
-            .orient("horizontal")
+            .orient("horizontal");
     
             svg.select(".legendSequential")
 	  	    .call(legendSequential);
