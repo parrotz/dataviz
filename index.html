@@ -20,7 +20,7 @@
     </style>
 </head>
 <body>
-    <h1>Price of Diamonds by Carat</h1>
+    <h1>Diamond Prices Visualized</h1>
     <script type="text/javascript">  
 
         var w = 1000;
@@ -50,6 +50,7 @@
 
         d3.csv("diamonds.csv", rowConverter).then(function(data) {    
 
+            // x and y scaling functions
             var xScale = d3.scaleLinear()
             .domain([d3.min(data, function(d) {return d.carat;}), d3.max(data, function(d) {return d.carat;})])
             .range([padding, w - padding * 2]);
@@ -58,14 +59,33 @@
             .domain([d3.min(data, function(d) {return d.price;}), d3.max(data, function(d) {return d.price;})])
             .range([h - padding, padding]);
 
+
+
+            // Color scaling functions
             var myColor = d3.scaleOrdinal()
             .domain(data)
             .range(d3.schemeTableau10);
 
             var ordinal = d3.scaleOrdinal()
-            .domain(["D (Best)", "E", "F", "G", "H", "I", "J (Worst)"])
+            .domain(["D", "E", "F", "G", "H", "I", "J"])
             .range(["#5778a4", "#e49444", "#d1615d", "#85b6b2", "#6a9f58", "#e7ca60", "#a87c9f"]);
 
+
+
+            // Zoom functions
+            function handleZoom(e) {
+                d3.selectAll("circle")
+                .attr("transform", e.transform)
+            };
+
+            let zoom = d3.zoom()
+            .on("zoom", handleZoom);
+
+            d3.select("svg")
+            .call(zoom);
+
+
+            // Scatterplot
             svg.selectAll("circle")
             .data(data)
             .enter()
@@ -77,12 +97,15 @@
             .on("mouseover", function() {    
                 d3.select(this)
                 .attr("r", 10); }
-                )
+            )
             .on("mouseout", function() {    
                 d3.select(this)
                 .attr("r", 2); }
-                );
+            );
+            
 
+
+            // Add axes
             var xAxis = d3.axisBottom()
             .scale(xScale);
 
@@ -99,6 +122,9 @@
             .attr("transform", "translate(" + padding + ",0)")
             .call(yAxis);
 
+
+
+            // Add color legend
             svg.append("g")
             .attr("class", "legendOrdinal")
             .attr("transform", "translate(" + (w - padding) + ",0)");
