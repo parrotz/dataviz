@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEWM-N328 Final Project</title>
+    <title>NEWM-N328 Final Project Visualization</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.min.js"></script>
     <style type="text/css">
@@ -181,7 +181,7 @@
                 
                 var cutColor = d3.scaleOrdinal()
                 .domain(data)
-                .range(["#e41a1c", "#377eb8", "#4daf4a", "#984ea3", "#ff7f00"]);
+                .range(["#7b3294", "#c2a5cf", "#f7f7f7", "#a6dba0", "#008837"]);
                 
                 svg.selectAll("circle")
                 .data(data)
@@ -190,7 +190,7 @@
                 // Add legend
                 var cutOrdinal = d3.scaleOrdinal()
                 .domain(["Ideal", "Premium", "Very Good", "Good", "Fair"])
-                .range(["#ff7f00", "#984ea3", "#4daf4a", "#377eb8", "#e41a1c"]);
+                .range(["#7b3294", "#c2a5cf", "#f7f7f7", "#a6dba0", "#008837"]);
 
                 var legendOrdinalUpdate = d3.legendColor()
                 .scale(cutOrdinal);
