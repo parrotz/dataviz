@@ -26,13 +26,12 @@
     <h1>Price of Diamonds by Carat</h1>
     <script type="text/javascript">  
 
-        var w = 200;
-        var h = 200;
+        var w = 1000;
+        var h = 1000;
         var padding = 50;
         var  margin = { top: 50, right: 30, bottom: 20, left: 30 };
 
         d3.json('countries.geojson').then(function(json) {
-            let width = 200, height = 200;
             let projection = d3.geoEqualEarth();
             projection.fitSize([w, h], json);
             let geoGenerator = d3.geoPath()
