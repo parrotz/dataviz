@@ -62,7 +62,7 @@
             .range([h - padding, padding]);
 
             var color = d3.scaleLinear()
-            .domain([function(d) {return d.color;}])
+            .domain(['D', 'E', 'F', 'G', 'H', 'I', 'J'])
             .range('red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet');
 
             svg.selectAll("circle")
