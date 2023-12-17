@@ -66,6 +66,7 @@
             .domain(data)
             .range(d3.schemeTableau10);
 
+
             svg.selectAll("circle")
             .data(data)
             .enter()
@@ -100,6 +101,17 @@
             .attr("class", "axis")
             .attr("transform", "translate(" + padding + ",0)")
             .call(yAxis);
+
+            svg.append("g")
+            .attr("class", "legendOrdinal")
+            .attr("transform", "translate(20,20)");
+
+    
+            var legendOrdinal = d3.legendColor()
+    	    .scale(myColor);
+    
+            svg.select(".legendOrdinal")
+	  	    .call(legendOrdinal);
 
         });        
     
