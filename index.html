@@ -190,13 +190,13 @@
                 // Add legend
                 var cutOrdinal = d3.scaleOrdinal()
                 .domain(["Ideal", "Premium", "Very Good", "Good", "Fair"])
-                .range(["#e41a1c", "#377eb8", "#4daf4a", "#984ea3", "#ff7f00"]);
+                .range(["#e41a1c", "#984ea3", "#ff7f00", "#377eb8", "#4daf4a"]);
 
                 var legendOrdinalUpdate = d3.legendColor()
                 .scale(cutOrdinal);
         
                 svg.select(".legendOrdinal")
-                .attr("transform", "translate(" + (w - padding - 35) + ",0)")
+                .attr("transform", "translate(" + (w - padding - padding) + ",0)")
                 .call(legendOrdinalUpdate);
             });
         });        
