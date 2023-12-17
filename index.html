@@ -44,9 +44,7 @@
         };
 
         let zoom = d3.zoom()
-        .on("zoom", handleZoom)
-        .scaleExtent([1, 10])
-        .translateExtent([0,0], [w,h]);
+        .on("zoom", handleZoom);
 
         d3.select("svg")
         .call(zoom);
