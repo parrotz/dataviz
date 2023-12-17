@@ -29,6 +29,7 @@
         var w = 1000;
         var h = 500;
         var padding = 50;
+        var  margin = { top: 10, right: 30, bottom: 50, left: 20 };
 
 
         var projection = d3.geoMercator()
@@ -42,8 +43,8 @@
 
         var svg = d3.select("body")
         .append("svg")
-        .attr("width", w)
-        .attr("height", h);
+        .attr("width", w + margin.right + margin.left)
+        .attr("height", h + margin.top + margin.bottom);
 
         d3.json("countries.geojson").then(function(json) {
 				
