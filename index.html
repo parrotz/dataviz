@@ -78,6 +78,21 @@
             .range(["#5778a4", "#e49444", "#d1615d", "#85b6b2", "#6a9f58", "#e7ca60", "#a87c9f"]);
 
 
+            // Build scatterplot
+            svg.selectAll("circle")
+            .data(data)
+            .enter()
+            .append("circle")
+            .attr("cx", function(d) {return xScale(d.carat);})
+            .attr("cy", function(d) {return yScale(d.price);})
+            .attr("r", 2)
+            .attr('fill', function(d) {return myColor(d);})
+            .on("mouseover", mouseover)
+            .on("mousemove", mousemove)
+            .on("mouseout", mouseleave);
+
+
+            
             // Tooltip
             var Tooltip = d3.select("#onlydiv")
             .append("div")
@@ -110,18 +125,6 @@
                 .attr("r", 2);
             };
 
-            // Build scatterplot
-            svg.selectAll("circle")
-            .data(data)
-            .enter()
-            .append("circle")
-            .attr("cx", function(d) {return xScale(d.carat);})
-            .attr("cy", function(d) {return yScale(d.price);})
-            .attr("r", 2)
-            .attr('fill', function(d) {return myColor(d);})
-            .on("mouseover", mouseover)
-            .on("mousemove", mousemove)
-            .on("mouseout", mouseleave);
 
 
             // Add axes
