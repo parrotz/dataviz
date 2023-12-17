@@ -115,7 +115,7 @@
                 Tooltip
                 .style("opacity", 0)
                 d3.select(this)
-                .attr("r", function(d) {return sizeScale(d.cut);});
+                .attr("r", 2);
             };
 
 
@@ -127,7 +127,7 @@
             .append("circle")
             .attr("cx", function(d) {return xScale(d.carat);})
             .attr("cy", function(d) {return yScale(d.price);})
-            .attr("r", function(d) {return sizeScale(d.cut);})
+            .attr("r", 2)
             .attr('fill', function(d) {return myColor(d.color);})
             .on("mouseover", mouseover)
             .on("mousemove", mousemove)
