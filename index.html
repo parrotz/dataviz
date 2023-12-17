@@ -85,7 +85,6 @@
             .style("opacity", 0)
             .attr("class", "tooltip")
             .style("background-color", "white")
-            .style("border", "solid")
             .style("border-width", "2px")
             .style("border-radius", "5px")
             .style("padding", "5px")
@@ -99,7 +98,7 @@
 
             var mousemove = function(event, d) {
                 Tooltip
-                .html("Price: " + d.price + "<br> Carats: " + d.carat + "<br> Clarity: " + d.clarity)
+                .html("Price: $" + d.price.toLocaleString("en-US") + "<br> Carats: " + d.carat + "<br> Clarity: " + d.clarity)
                 .style("left", (event.pageX + 30) + "px") 
                 .style("top", (event.pageY) + "px")
             };
