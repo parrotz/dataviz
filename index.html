@@ -109,7 +109,7 @@
             .attr("transform", "translate(" + (w - padding) + ",0)");
 
             var legendOrdinal = d3.legendColor()
-    	    .scale(function(d) {return ordinal(d);});
+    	    .scale(ordinal);
     
             svg.select(".legendOrdinal")
 	  	    .call(legendOrdinal);
