@@ -114,23 +114,6 @@
 
 
 
-            // Shapes
-
-            var triangleU = d3.symbol().type(d3.symbolTriangle)(),
-            circle = d3.symbol().type(d3.symbolCircle)(),
-            cross = d3.symbol().type(d3.symbolCross)(),
-            diamond = d3.symbol().type(d3.symbolDiamond)(),
-            star = d3.symbol().type(d3.symbolStar)();
-
-            var symbol = d3.scaleOrdinal()
-            .domain(data)
-            .range([ triangleU, circle, cross, diamond, star] );
-
-            var symbolScale =  d3.scaleOrdinal()
-            .domain(["Ideal", "Premium", "Very Good", "Good", "Fair"])
-            .range([ triangleU, circle, cross, diamond, star] );
-
-
             // Build scatterplot
             svg.selectAll("circle")
             .data(data)
@@ -140,10 +123,6 @@
             .attr("cy", function(d) {return yScale(d.price);})
             .attr("r", 2)
             .attr('fill', function(d) {return myColor(d.color);})
-            .append("path")
-            .datum(data)
-            .attr("class", "symbol")
-            .attr("d", function(d) {return symbol(d.cut);})
             .on("mouseover", mouseover)
             .on("mousemove", mousemove)
             .on("mouseout", mouseleave);
@@ -196,6 +175,32 @@
             svg.select(".legendOrdinal")
 	  	    .call(legendOrdinal);
 
+
+            d3.select("svg")
+            .on("click", function() {        
+                svg.selectAll("circle")
+                .data(data)
+                .enter()
+                .append("circle")
+                .attr("cx", function(d) {return xScale(d.carat);})
+                .attr("cy", function(d) {return yScale(d.price);})
+                .attr("r", 2)
+                .attr('fill', function(d) {return myColor(d.cut);})
+                .on("mouseover", mouseover)
+                .on("mousemove", mousemove)
+                .on("mouseout", mouseleave);
+                
+                // Add legend
+                var cutOrdinal = d3.scaleOrdinal()
+                .domain(["Ideal", "Premium", "Very Good", "Good", "Fair"])
+                .range(["#a65628", "#ffff33", "#ff7f00", "#984ea3", "#4daf4a", "#377eb8", "#e41a1c"]);
+
+                var legendOrdinalUpdate = d3.legendColor()
+                .scale(cutOrdinal);
+        
+                svg.select(".legendOrdinal")
+                .call(legendOrdinalUpdate);
+            });
         });        
     
     </script>
