@@ -99,7 +99,7 @@
 
             var mousemove = function(d) {
                 Tooltip
-                .html("The exact value of this cell is: " + (function(d) {return d.price;}))
+                .html("The exact value of this cell is: " + d.price)
                 .style("left", (d3.mouse(this)[0]+70) + "px")
                 .style("top", (d3.mouse(this)[1]) + "px")
             };
@@ -146,22 +146,13 @@
             .call(yAxis);
 
             svg.append("text")
-            .attr("class", "x label")
-            .attr("text-anchor", "end")
-            .attr("x", w/2)
-            .attr("y", h - 6)
-            .text("Carats");
+            .attr("transform", "rotate(-90)")
+            .attr("y", 0 – padding)
+            .attr("x",0 - (h / 2))
+            .attr("dy", "1em")
+            .style("text-anchor", "middle")
+            .text("Price");
 
-            var axisLabelX = -50;
-            var axisLabelY = h / 2;
-
-            chartArea
-                .append('g')
-                .attr('transform', 'translate(' + axisLabelX + ', ' + axisLabelY + ')')
-                .append('text')
-                .attr('text-anchor', 'middle')
-                .attr('transform', 'rotate(-90)')
-                .text('Price');
 
             // Add legend
             svg.append("g")
