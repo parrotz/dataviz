@@ -67,6 +67,9 @@
             .domain(data)
             .range(d3.schemeTableau10);
 
+            var ordinal = d3.scaleOrdinal()
+            .domain("D", "E", "F", "G", "H", "I", "J")
+            .range(d3.schemeTableau10);
 
             svg.selectAll("circle")
             .data(data)
@@ -105,9 +108,8 @@
             .attr("class", "legendOrdinal")
             .attr("transform", "translate(20,20)");
 
-    
             var legendOrdinal = d3.legendColor()
-    	    .scale(myColor);
+    	    .scale(ordinal);
     
             svg.select(".legendOrdinal")
 	  	    .call(legendOrdinal);
