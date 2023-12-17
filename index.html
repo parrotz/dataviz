@@ -26,15 +26,15 @@
     <h1>Price of Diamonds by Carat</h1>
     <script type="text/javascript">  
 
-        var w = 1000;
-        var h = 1000;
+        var w = 500;
+        var h = 300;
         var padding = 50;
         var  margin = { top: 50, right: 30, bottom: 20, left: 30 };
 
 
         var projection = d3.geoMercator()
 		.translate([w/2, h/2])
-		.scale([w * 0.1]);
+		.scale([w]);
 
 
         var path = d3.geoPath()
