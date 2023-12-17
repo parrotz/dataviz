@@ -55,11 +55,11 @@
 
             var xScale = d3.scaleLinear()
             .domain([d3.min(data, function(d) {return d.carat;}), d3.max(data, function(d) {return d.carat;})])
-            .range([0, w]);
+            .range([padding, w - padding * 2]);
 
             var yScale = d3.scaleLinear()
             .domain([d3.min(data, function(d) {return d.price;}), d3.max(data, function(d) {return d.price;})])
-            .range([h, 0])
+            .range([h - padding, padding])
 
             svg.selectAll("circle")
             .data(data)
