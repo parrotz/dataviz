@@ -97,11 +97,11 @@
                 .attr("r", 10);
             };
 
-            var mousemove = function(e, d) {
+            var mousemove = function(event, d) {
                 Tooltip
                 .html("Price: " + d.price + "<br> Carats: " + d.carat + "<br> Clarity: " + d.clarity)
-                .style("left", (e.pageX + 30) + "px") 
-                .style("top", (e.pageY) + "px")
+                .style("left", (event.pageX + 30) + "px") 
+                .style("top", (event.pageY) + "px")
             };
 
             var mouseleave = function(d) {
