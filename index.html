@@ -186,7 +186,7 @@
                 svg.selectAll("circle")
                 .data(data)
                 .transition()
-                .duration(1000)
+                .duration(2000)
                 .attr('fill', function(d) {return cutColor(d.cut);})
                 
                 // Add legend
@@ -198,6 +198,8 @@
                 .scale(cutOrdinal);
         
                 svg.select(".legendOrdinal")
+                .transition()
+                .duration(2000)
                 .attr("transform", "translate(" + (w - padding - padding) + ",0)")
                 .call(legendOrdinalUpdate);
             });
