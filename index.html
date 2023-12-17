@@ -179,16 +179,7 @@
             d3.select("svg")
             .on("click", function() {        
                 svg.selectAll("circle")
-                .data(data)
-                .enter()
-                .append("circle")
-                .attr("cx", function(d) {return xScale(d.carat);})
-                .attr("cy", function(d) {return yScale(d.price);})
-                .attr("r", 2)
                 .attr('fill', function(d) {return myColor(d.cut);})
-                .on("mouseover", mouseover)
-                .on("mousemove", mousemove)
-                .on("mouseout", mouseleave);
                 
                 // Add legend
                 var cutOrdinal = d3.scaleOrdinal()
@@ -199,6 +190,7 @@
                 .scale(cutOrdinal);
         
                 svg.select(".legendOrdinal")
+                .attr("transform", "translate(" + (w - padding - 20) + ",0)");
                 .call(legendOrdinalUpdate);
             });
         });        
