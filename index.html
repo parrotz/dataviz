@@ -179,6 +179,7 @@
             d3.select("svg")
             .on("click", function() {        
                 svg.selectAll("circle")
+                .data(data)
                 .attr('fill', function(d) {return myColor(d.cut);})
                 
                 // Add legend
