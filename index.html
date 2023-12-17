@@ -152,13 +152,16 @@
             .attr("y", h - 6)
             .text("Carats");
 
-            svg.append("text")
-            .attr("class", "y label")
-            .attr("text-anchor", "end")
-            .attr("y", 250)
-            .attr("dy", "0.75em")
-            .attr("transform", "rotate(-90)")
-            .text("Price");
+            var axisLabelX = -50;
+            var axisLabelY = h / 2;
+
+            chartArea
+                .append('g')
+                .attr('transform', 'translate(' + axisLabelX + ', ' + axisLabelY + ')')
+                .append('text')
+                .attr('text-anchor', 'middle')
+                .attr('transform', 'rotate(-90)')
+                .text('Price');
 
             // Add legend
             svg.append("g")
