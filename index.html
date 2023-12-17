@@ -78,12 +78,6 @@
             .range(["#a65628", "#ffff33", "#ff7f00", "#984ea3", "#4daf4a", "#377eb8", "#e41a1c"]);
 
 
-
-            // Shape scales
-            var shape = d3.scaleOrdinal(d3.symbolsStroke);
-            var symbol = d3.symbol;
-
-
             // Tooltip
             var Tooltip = d3.select("#onlydiv")
             .append("div")
@@ -120,16 +114,36 @@
 
 
 
+            // Shapes
+
+            var triangleU = d3.symbol().type(d3.symbolTriangle)(),
+            circle = d3.symbol().type(d3.symbolCircle)(),
+            cross = d3.symbol().type(d3.symbolCross)(),
+            diamond = d3.symbol().type(d3.symbolDiamond)(),
+            star = d3.symbol().type(d3.symbolStar)();
+
+            var symbol = d3.scaleOrdinal()
+            .domain(data)
+            .range([ triangleU, circle, cross, diamond, star] );
+
+            var symbolScale =  d3.scaleOrdinal()
+            .domain(["Ideal", "Premium", "Very Good", "Good", "Fair"])
+            .range([ triangleU, circle, cross, diamond, star] );
+
+
             // Build scatterplot
             svg.selectAll(".symbol")
             .data(data)
             .enter()
-            .append('path')
-            .attr('d', d => symbol.type(shape(d.cut))())
+            .append("circle")
             .attr("cx", function(d) {return xScale(d.carat);})
             .attr("cy", function(d) {return yScale(d.price);})
             .attr("r", 2)
             .attr('fill', function(d) {return myColor(d.color);})
+            .append("path")
+            .datum(data)
+            .attr("class", "symbol")
+            .attr("d", symbol)
             .on("mouseover", mouseover)
             .on("mousemove", mousemove)
             .on("mouseout", mouseleave);
