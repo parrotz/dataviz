@@ -3,41 +3,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NEWM-N328 Final Project</title>
-    <script src="https://unpkg.com/d3@5.6.0/dist/d3.min.js"></script>
-    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+    <style type="text/css">
 
+        h1 {
+            font-family: Helvetica, sans-serif;
+            font-size: 14px;
+            font-weight: bold;
+        }
+/* 
+        .area {
+            stroke: none;
+        }
+
+        .area:hover {
+            fill: yellow;
+        } */
+
+    </style>
 </head>
 <body>
-   <h1>Price of Diamonds by Carat</h1>
+    <h1>Price of Diamonds by Carat</h1>
     <script type="text/javascript">  
 
-
-        var w = 960;
+        var w = 1000;
         var h = 500;
         var padding = 50;
-        var  margin = { top: 50, right: 30, bottom: 20, left: 30 };
 
-        d3.json('countries.geojson').then(function(json) {
-            let projection = d3.geoEqualEarth();
-            projection.fitSize([w, h], json);
-            let geoGenerator = d3.geoPath()
-            .projection(projection);
+        var svg = d3.select("body")
+        .append("svg")
+        .attr("width", w)
+        .attr("height", h);
 
-            let svg = d3.select("body").append('svg')
-            .style("width", w)
-            .style("height", h);
-
-            svg.append('g').selectAll('path')
-            .data(json.features)
-            .join('path')
-            .attr('d', geoGenerator)
-            .attr('fill', 'lightgreen')
-            .attr('stroke', 'black')
-            .attr('stroke-opacity', 0.1);
-        });
-
-
- /*         var rowConverter = function(d) {  
+        var rowConverter = function(d) {  
                 return {        
                     index: parseInt(d.Index), 
                     carat: parseFloat(d.carat),
@@ -97,8 +95,8 @@
             .attr("transform", "translate(" + padding + ",0)")
             .call(yAxis);
 
-        });  */      
+        });        
     
-    </script> 
+    </script>
 </body>
 </html>
