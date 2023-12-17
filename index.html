@@ -26,8 +26,8 @@
     <h1>Price of Diamonds by Carat</h1>
     <script type="text/javascript">  
 
-        var w = 500;
-        var h = 300;
+        var w = 200;
+        var h = 200;
         var padding = 50;
         var  margin = { top: 50, right: 30, bottom: 20, left: 30 };
 
@@ -39,7 +39,7 @@
             .projection(projection);
 
             let svg = d3.select("body").append('svg')
-            .style("width", width).style("height", height);
+            .style("width", w).style("height", h);
 
             svg.append('g').selectAll('path')
             .data(json.features)
