@@ -173,7 +173,8 @@
 
             var legendOrdinal = d3.legendColor()
     	    .scale(ordinal)
-            .title("Color");
+            .title("Color")
+            .on("cellover", );
     
             svg.select(".legendOrdinal")
 	  	    .call(legendOrdinal);
@@ -225,7 +226,7 @@
                     // Add legend
                     var clarityOrdinal = d3.scaleOrdinal()
                     .domain(["IF", "VVS1", "VVS2", "VS1", "VS2", "SI1", "SI2", "I1"])
-                    .range(clarityRange.reverse());
+                    .range(["#ffff33", "#a65628", "#f781bf", "#4daf4a", "#ff7f00", "#984ea3", "#e41a1c", "#377eb8"]);
 
                     var legendOrdinalUpdate2 = d3.legendColor()
                     .scale(clarityOrdinal)
