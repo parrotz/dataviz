@@ -61,9 +61,9 @@
             .domain([d3.min(data, function(d) {return d.price;}), d3.max(data, function(d) {return d.price;})])
             .range([h - padding, padding]);
 
-            var color = d3.scaleLinear()
-            .domain(['D', 'E', 'F', 'G', 'H', 'I', 'J'])
-            .range('red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet');
+            var myColor = d3.scaleOrdinal()
+            .domain(data)
+            .range(d3.schemeSet3);
 
             svg.selectAll("circle")
             .data(data)
@@ -72,7 +72,7 @@
             .attr("cx", function(d) {return xScale(d.carat);})
             .attr("cy", function(d) {return yScale(d.price);})
             .attr("r", 2)
-            .attr('fill', function(d, i) {return color[i];})
+            .attr('fill', function(d) {return myColor(d);})
             .on("mouseover", function() {    
                 d3.select(this)
                 .attr("fill", "orange")
