@@ -29,12 +29,12 @@
         var w = 1000;
         var h = 500;
         var padding = 50;
-        var  margin = { top: 50, right: 30, bottom: 50, left: 30 };
+        var  margin = { top: 50, right: 30, bottom: 20, left: 30 };
 
 
         var projection = d3.geoMercator()
 		.translate([w/2, h/2])
-		.scale([w * 0.16]);
+		.scale([w * 0.05]);
 
 
         var path = d3.geoPath()
