@@ -30,12 +30,34 @@
         var h = 500;
         var padding = 50;
 
+
+        var projection = d3.geoMercator()
+		.translate([w/2, h/2])
+		.scale([w * 0.16]);
+
+
+        var path = d3.geoPath()
+		.projection(projection);
+
+
         var svg = d3.select("body")
         .append("svg")
         .attr("width", w)
         .attr("height", h);
 
-        var rowConverter = function(d) {  
+        d3.json("countries.geojson", function(json) {
+				
+			svg.selectAll("path")
+			.data(json.features)
+			.enter()
+			.append("path")
+			.attr("d", path)
+			.style("fill", "steelblue");
+		
+			});
+
+
+/*         var rowConverter = function(d) {  
                 return {        
                     index: parseInt(d.Index), 
                     carat: parseFloat(d.carat),
@@ -95,8 +117,8 @@
             .attr("transform", "translate(" + padding + ",0)")
             .call(yAxis);
 
-        });        
+        });  */      
     
-    </script>
+    </script> 
 </body>
 </html>
