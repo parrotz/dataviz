@@ -62,17 +62,17 @@
     is somewhat correlated to its size measurements, which means there would be overlap and potentially collinearity 
     between the x, y, z, depth, and table variables and the carat variable. In the interest of concision I chose not 
     to focus on the size.
+    </p>
 
-    <br style = "line-height:2">
-
+    <p>
     My initial plan was to create a series of plots with the independent variable price on the y-axis 
     and each of the 4 Cs on the x-axis of their own graph. My thinking was that mapping too many features to a single 
     image would be overwhelming, especially since the dataset is so large. I quickly realized that this wasn't feasible, 
     since cut, clarity, and color are all categorical rather than continuous variables. From that initial idea, however, 
     I did settle on a scatterplot with carats on the x-axis. This ended up being the foundation of my final iteration.
+    </p>
 
-    <br style = "line-height:2">
-
+    <p>
     In fact, even this initial visualization revealed two interesting features of manufactured diamonds. First, I 
     expected that the distribution of carats would be mostly even, since diamonds naturally come in all shapes and 
     sizes. Instead, what I found was that the distribution tended to cluster around specific carat values. Diamonds 
@@ -81,10 +81,21 @@
     in those groupings. I surmise that those are standardized weights for particular sizes of jewelry, or maybe that 
     particular shapes trend towards particular weights.
     </p>
+
     <img src="/dataviz/caratBands.png">
+
     <p>
     Second, the price of diamonds trends upwards with the weight of the diamond in carats. Unsurprising! Showing that 
-    big diamonds are more expensive than small diamonds is hardly worth learning JavaScript for. 
+    big diamonds are more expensive than small diamonds is hardly worth learning JavaScript for. However, there are 
+    several spots of noticeable variability in prices for diamonds of similar weights. For example, there is variance 
+    within the standardized weight bands I pointed out in the previous paragraph. Since those diamonds aren't differentiated 
+    by their weight, it makes sense that other factors affect the price. Similarly, above and below a certain threshold there 
+    is little correlation between weight and price. This too makes sense, since very small and obscenely large diamonds 
+    would have to differentiate themselves in other ways.
+    </p>
+
+    <p>
+    
     </p>
     <br style = "line-height:10">
 
