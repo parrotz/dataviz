@@ -34,7 +34,7 @@
 
         var projection = d3.geoMercator()
 		.translate([w/2, h/2])
-		.scale([w * 0.05]);
+		.scale([w * 0.1]);
 
 
         var path = d3.geoPath()
@@ -43,8 +43,8 @@
 
         var svg = d3.select("body")
         .append("svg")
-        .attr("width", w + margin.right + margin.left)
-        .attr("height", h + margin.top + margin.bottom);
+        .attr("width", w)
+        .attr("height", h);
 
         d3.json("countries.geojson").then(function(json) {
 				
