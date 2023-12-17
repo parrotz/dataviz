@@ -39,7 +39,7 @@
 
         // Zoom functions
         function handleZoom(e) {
-            d3.selectAll("circle")
+            d3.select("svg")
             .attr("transform", e.transform)
         };
 
@@ -52,7 +52,7 @@
         .call(zoom);
 
 
-        
+
         // Data parser
         var rowConverter = function(d) {  
                 return {        
