@@ -42,7 +42,7 @@
             .style("width", width).style("height", height);
 
             svg.append('g').selectAll('path')
-            .data(bb.features)
+            .data(json.features)
             .join('path')
             .attr('d', geoGenerator)
             .attr('fill', '#088')
