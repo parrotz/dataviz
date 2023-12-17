@@ -155,6 +155,15 @@
             .attr("font-weight", "bold")
             .text("Carats");
 
+            svg.append("text")
+            .attr("class", "y label")
+            .attr("text-anchor", "end")
+            .attr("y", 6)
+            .attr("dy", ".75em")
+            .attr("font-weight", "bold")
+            .attr("transform", "rotate(-90)")
+            .text("Price");
+
 
             // Add legend
             svg.append("g")
