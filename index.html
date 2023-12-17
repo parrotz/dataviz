@@ -57,6 +57,7 @@
         
         d3.csv("diamonds.csv", rowConverter).then(function(data) {    
 
+            // x and y scales
             var xScale = d3.scaleLinear()
             .domain([d3.min(data, function(d) {return d.carat;}), d3.max(data, function(d) {return d.carat;})])
             .range([padding, w - padding * 2]);
@@ -65,6 +66,8 @@
             .domain([d3.min(data, function(d) {return d.price;}), d3.max(data, function(d) {return d.price;})])
             .range([h - padding, padding]);
 
+
+            // Color scales
             var myColor = d3.scaleOrdinal()
             .domain(data)
             .range(d3.schemeTableau10);
@@ -73,6 +76,8 @@
             .domain(["D", "E", "F", "G", "H", "I", "J"])
             .range(["#5778a4", "#e49444", "#d1615d", "#85b6b2", "#6a9f58", "#e7ca60", "#a87c9f"]);
 
+
+            // Build scatterplot
             svg.selectAll("circle")
             .data(data)
             .enter()
@@ -84,12 +89,14 @@
             .on("mouseover", function() {    
                 d3.select(this)
                 .attr("r", 10); }
-                )
+            )
             .on("mouseout", function() {    
                 d3.select(this)
                 .attr("r", 2); }
-                );
+            );
 
+
+            // Add axes
             var xAxis = d3.axisBottom()
             .scale(xScale);
 
@@ -106,6 +113,22 @@
             .attr("transform", "translate(" + padding + ",0)")
             .call(yAxis);
 
+            svg.append("text")
+            .attr("class", "x label")
+            .attr("text-anchor", "end")
+            .attr("x", w)
+            .attr("y", h - 6)
+            .text("Carats");
+
+            svg.append("text")
+            .attr("class", "y label")
+            .attr("text-anchor", "end")
+            .attr("y", 6)
+            .attr("dy", ".75em")
+            .attr("transform", "rotate(-90)")
+            .text("Price");
+
+            // Add legend
             svg.append("g")
             .attr("class", "legendOrdinal")
             .attr("transform", "translate(" + (w - padding) + ",0)");
@@ -115,6 +138,9 @@
     
             svg.select(".legendOrdinal")
 	  	    .call(legendOrdinal);
+
+
+    
 
         });        
     
