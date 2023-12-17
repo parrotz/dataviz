@@ -77,11 +77,11 @@
             .on("mouseover", function() {    
                 d3.select(this)
                 .attr("fill", "orange")
-                .attr("r", 4); }
+                .attr("r", 6); }
                 )
             .on("mouseout", function() {    
                 d3.select(this)
-                .attr("fill", "black")
+                .attr("fill", function(d) {return myColor(d);})
                 .attr("r", 2); }
                 );
 
