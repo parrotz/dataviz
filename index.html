@@ -57,13 +57,17 @@
     is somewhat correlated to its size measurements, which means there would be overlap and potentially collinearity 
     between the x, y, z, depth, and table variables and the carat variable. In the interest of concision I chose not 
     to focus on the size.
+
     <br style = “line-height:2”>
+
     My initial plan was to create a series of plots with the independent variable price on the y-axis 
     and each of the 4 Cs on the x-axis of their own graph. My thinking was that mapping too many features to a single 
     image would be overwhelming, especially since the dataset is so large. I quickly realized that this wasn't feasible, 
     since cut, clarity, and color are all categorical rather than continuous variables. From that initial idea, however, 
     I did settle on a scatterplot with carats on the x-axis. This ended up being the foundation of my final iteration.
+
     <br style = “line-height:2”>
+
     In fact, even this initial visualization revealed two interesting features of manufactured diamonds. First, I 
     expected that the distribution of carats would be mostly even, since diamonds naturally come in all shapes and 
     sizes. Instead, what I found was that the distribution tended to cluster around specific carat values. Diamonds 
@@ -71,12 +75,14 @@
     values. That's not to say that diamonds <em>don't</em> come in other weights, but rather that they are focused 
     in those groupings. I surmise that those are standardized weights for particular sizes of jewelry, or maybe that 
     particular shapes trend towards particular weights.
+    </p>
     <img src="/dataviz/caratBands.png">
+
     <p>
     Second, the price of diamonds trends upwards with the weight of the diamond in carats. Unsurprising! Showing that 
     big diamonds are more expensive than small diamonds is hardly worth learning JavaScript for. 
     </p>
     <br style = “line-height:10”>
-    </p>
+
 </body>
 </html>
