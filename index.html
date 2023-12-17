@@ -185,7 +185,7 @@
                 
                 svg.selectAll("circle")
                 .data(data)
-                .attr('fill', function(d) {return myColor(d.cut);})
+                .attr('fill', function(d) {return cutColor(d.cut);})
                 
                 // Add legend
                 var cutOrdinal = d3.scaleOrdinal()
