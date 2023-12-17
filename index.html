@@ -7,20 +7,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.min.js"></script>
     <style type="text/css">
 
-        h1 {
+        * {
             font-family: Helvetica, sans-serif;
+        }
+
+        h1 {
             font-size: 18px;
             font-weight: bold;
             text-align: center;
         }
-/* 
-        .area {
-            stroke: none;
-        }
-
-        .area:hover {
-            fill: yellow;
-        } */
 
     </style>
 </head>
@@ -68,7 +63,7 @@
             .range(d3.schemeTableau10);
 
             var ordinal = d3.scaleOrdinal()
-            .domain(["D", "E", "F", "G", "H", "I", "J"])
+            .domain(["D (Best)", "E", "F", "G", "H", "I", "J (Worst)"])
             .range(["#5778a4", "#e49444", "#d1615d", "#85b6b2", "#6a9f58", "#e7ca60", "#a87c9f"]);
 
             svg.selectAll("circle")
